@@ -1,0 +1,113 @@
+{
+  "_note": "第 3 屏「结果列表」：工具按钮（排序方案 / 视图 / 对比 / 导出）、筛选栏提示、结果卡片与表格视图字段、分页。**属结果集元数据的两样不在本文件**——页头标题 head.title、口径统计 head.meta 与「本次实际生效地域」regionsUsed，都随本次检索条件变，住在 test_date.js → list（运行期由后端覆盖，模板见 backend/app/wrap.py → _TITLE_TPL）。另外**不再有默认勾选**：启动时一条都不勾，简报预览与导出只认用户在列表里勾了什么。",
+  "tools": {
+    "sortPrefix": "排序：",
+    "sortTitle": "排序方式：点开可切换（只在本地重排，不会重新检索）",
+    "sortDefault": "authority",
+    "sortOptions": [
+      {
+        "v": "authority",
+        "label": "权威度 + 发布时间",
+        "hint": "国家级 / 省级优先，同级按发布时间倒序"
+      },
+      {
+        "v": "publish",
+        "label": "发布时间（最新优先）",
+        "hint": "刚出台的政策排在前面"
+      },
+      {
+        "v": "deadline",
+        "label": "截止日期（最快到期优先）",
+        "hint": "快截止的排前面，别错过申报窗口"
+      },
+      {
+        "v": "confidence",
+        "label": "字段置信度（高优先）",
+        "hint": "抽取置信度高的排在前面"
+      }
+    ],
+    "levelOrder": [
+      "国家级",
+      "省级",
+      "市级",
+      "区县级"
+    ],
+    "grid": "卡片",
+    "rows": "表格",
+    "compare": "对比 ({n})",
+    "compareTitle": "勾选 2–5 条政策并排比对核心字段",
+    "export": "导出简报",
+    "minCompare": 2,
+    "maxCompare": 5
+  },
+  "filter": {
+    "regionLabel": "地域",
+    "regionHint": "本次检索使用的地域条件，需调整请回首页修改后重新检索",
+    "regionNone": "全国（不限）",
+    "condLabel": "本次条件"
+  },
+  "selectAll": "全选（本页 {n} 条）",
+  "pickedCount": "已勾选 {n} 条",
+  "genBrief": "→ 生成简报",
+  "pager": {
+    "_note": "页码口径（total / perPage）由后端给，见 test_date.js → list.pager；这里只放文案模板。",
+    "textTpl": "共 {total} 条 · 每页 {perPage} 条 · 第 {cur} / {pages} 页 · 按「{sort}」排序",
+    "prev": "上一页",
+    "next": "下一页",
+    "ellipsis": "…",
+    "pageAria": "第 {n} 页",
+    "currentAria": "第 {n} 页 · 当前页",
+    "empty": "本页暂无内容"
+  },
+  "compare": {
+    "_note": "对比视图：勾选 2–5 条政策后并排比对核心字段。rows 决定比对哪些字段与顺序。",
+    "title": "政策对比",
+    "sub": "{n} 条政策并排比对 · 共 {fields} 项核心字段",
+    "close": "关闭对比",
+    "fieldHead": "对比项",
+    "diffBadge": "有差异",
+    "sameBadge": "一致",
+    "needMore": "至少勾选 2 条政策才能对比（当前 {n} 条）",
+    "tooMany": "最多同时对比 {max} 条政策（当前 {n} 条）",
+    "rows": [
+      { "k": "level", "label": "层级" },
+      { "k": "issuer", "label": "发文机关" },
+      { "k": "types", "label": "政策类型" },
+      { "k": "industries", "label": "适用行业" },
+      { "k": "publish", "label": "发布时间" },
+      { "k": "deadline", "label": "截止日期" },
+      { "k": "left", "label": "剩余天数" },
+      { "k": "subsidy", "label": "补贴标准" },
+      { "k": "conditions", "label": "申请条件" },
+      { "k": "sources", "label": "数据来源" },
+      { "k": "confidence", "label": "字段置信度" },
+      { "k": "verify", "label": "字段核验" }
+    ]
+  },
+  "card": {
+    "unverified": "{n} 字段待核验",
+    "verified": "全部字段已核验",
+    "kDeadline": "截止日期",
+    "kSubsidy": "补贴标准",
+    "kConditions": "申请条件",
+    "deadlineValue": "<b>{deadline}</b> · 剩 {n} 天",
+    "publish": "{d} 发布",
+    "srcPrefix": "来源：",
+    "footHint": "点击任意字段可回原文"
+  },
+  "table": {
+    "_note": "「表格」视图的列头与单元格文案。",
+    "cols": {
+      "name": "政策名称",
+      "level": "层级",
+      "types": "类型",
+      "publish": "发布",
+      "deadline": "截止",
+      "left": "剩余",
+      "subsidy": "补贴标准"
+    },
+    "leftUnit": "{n} 天",
+    "leftUnknown": "—",
+    "empty": "当前条件下没有结果"
+  }
+}

@@ -1,0 +1,186 @@
+/* ============================================================
+   产品 UI —— 通用组件（顶栏 / 按钮 / 徽标 / 芯片 / 卡片 / 提示条）
+   ============================================================ */
+
+/* ---------- 产品顶栏（HF/顶栏 1:1 还原） ---------- */
+.topbar{
+  flex:0 0 auto;display:flex;align-items:center;gap:12px;
+  height:64px;padding:0 24px;background:var(--card);border-bottom:1px solid #EAEAEA;
+}
+.tb-logo{display:flex;align-items:center;gap:10px;flex:0 0 auto;white-space:nowrap}
+.tb-logo .mark{
+  width:32px;height:32px;border-radius:var(--r-3);display:grid;place-items:center;
+  background:linear-gradient(135deg,#001745 0%,#014DB3 100%);
+}
+.tb-logo .mark svg{display:block}
+.tb-name{font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap}
+.tb-pill{
+  height:22px;padding:0 8px;border-radius:var(--r-full);background:var(--bg-2);
+  font-size:11px;color:var(--muted);display:inline-flex;align-items:center;
+  flex:0 0 auto;white-space:nowrap;
+}
+.tb-spacer{flex:1;min-width:0}
+/* 9 项导航：空间不够时让导航自己横向滚动，而不是把 logo / 状态胶囊挤成两行 */
+.tb-nav{
+  display:flex;align-items:center;gap:4px;flex:0 1 auto;min-width:0;
+  overflow-x:auto;scrollbar-width:none;
+}
+.tb-nav::-webkit-scrollbar{display:none}
+.tb-nav button{
+  flex:0 0 auto;
+  height:32px;padding:0 12px;border-radius:var(--r-full);
+  font-size:13px;color:var(--muted);transition:background .15s,color .15s;white-space:nowrap;
+}
+.tb-nav button:hover{background:var(--bg-3);color:var(--text)}
+.tb-nav button.on{background:var(--blue-50b);color:var(--brand);font-weight:500}
+/* 闸门未开（未登录且未选游客身份）：站在登录页上时产品导航置灰，避免「点了没反应」 */
+.tb-nav button:disabled{opacity:.4;cursor:not-allowed}
+.tb-nav button:disabled:hover{background:transparent;color:var(--muted)}
+/* 后台检索中：顶栏进度胶囊，任意屏可见，点它回到检索屏（不会重新发起检索） */
+.tb-run-slot{display:inline-flex;align-items:center;flex:0 0 auto}
+.tb-run{
+  display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;
+  border-radius:var(--r-full);background:var(--blue-50b);color:var(--brand);
+  font-size:12px;font-weight:500;white-space:nowrap;transition:background .15s;
+}
+.tb-run:hover{background:var(--blue-50)}
+.tb-run b{font-family:var(--font-en);font-size:11px;font-weight:600}
+.tb-run .spin{width:12px;height:12px;border-width:2px;border-color:rgba(1,77,178,.25);border-top-color:var(--brand)}
+.tb-status{
+  display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 8px;
+  border-radius:var(--r-full);background:var(--ok-bg);font-size:12px;color:var(--ok-fg);
+  flex:0 0 auto;white-space:nowrap;
+}
+.tb-status .dot{width:8px;height:8px;border-radius:var(--r-full);background:var(--ok)}
+.tb-status.off{background:var(--warn-bg);color:var(--warn-fg);cursor:pointer}
+.tb-status.off .dot{background:var(--warn-dot)}
+/* 检索进行中：让位给「检索中 n%」胶囊（作者样式会盖掉 UA 的 [hidden]{display:none}，需显式写） */
+.tb-status[hidden]{display:none}
+
+/* ---------- 按钮 ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  height:36px;padding:0 16px;border-radius:var(--r-3);
+  font-size:13px;font-weight:500;white-space:nowrap;
+  border:1px solid transparent;transition:.15s;user-select:none;
+}
+.btn-sm{height:30px;padding:0 12px;font-size:12px;border-radius:var(--r-2)}
+.btn-lg{height:44px;padding:0 22px;font-size:14px;border-radius:var(--r-full)}
+.btn-primary{background:linear-gradient(90deg,#003D8F 0%,#014DB3 100%);color:var(--on-brand)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-primary:disabled{opacity:.55;cursor:not-allowed;filter:none}
+.btn-solid{background:var(--brand);color:var(--on-brand)}
+.btn-solid:hover{background:var(--brand-600)}
+.btn-outline{background:var(--card);border-color:var(--border-2);color:#4B5563}
+.btn-outline:hover{border-color:var(--brand);color:var(--brand)}
+.btn-ghost{background:transparent;color:var(--muted)}
+.btn-ghost:hover{background:var(--bg-2);color:var(--text)}
+.btn-link{height:auto;padding:0;color:var(--brand-link);font-weight:400}
+.btn-link:hover{text-decoration:underline}
+.btn[disabled],.btn.is-busy{pointer-events:none;opacity:.6}
+.spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+.spin.dark{border-color:rgba(1,77,178,.25);border-top-color:var(--brand)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- 徽标 / 标签 ---------- */
+.badge{
+  display:inline-flex;align-items:center;gap:4px;height:20px;padding:0 7px;
+  border-radius:var(--r-1);font-size:11px;line-height:1;white-space:nowrap;
+}
+.badge-warn{background:var(--warn-bg);color:var(--warn-fg);border:1px solid var(--warn-bd)}
+.badge-ok{background:var(--ok-bg);color:var(--ok-fg);border:1px solid var(--ok-bd)}
+.badge-danger{background:var(--danger-bg);color:var(--danger-fg);border:1px solid var(--danger-bd)}
+.badge-info{background:var(--blue-50b);color:var(--brand);border:1px solid var(--blue-50)}
+.badge-plain{background:var(--bg-2);color:var(--muted)}
+.badge-orange{background:var(--orange-bg);color:var(--orange);border:1px solid #FED7AA}
+.badge-lg{height:24px;padding:0 9px;font-size:12px;border-radius:var(--r-2)}
+
+/* 层级标签（市级/省级/区县级） */
+.lvl{display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:var(--r-1);
+  font-size:11px;background:var(--blue-50b);color:var(--brand);border:1px solid var(--blue-50)}
+.lvl.national,.lvl.nation{background:#FEF2F2;color:#B91C1C;border-color:#FECACA}
+.lvl.province{background:#FFF7EE;color:#B4520A;border-color:#FDE68A}
+.lvl.city{background:var(--blue-50b);color:var(--brand);border-color:var(--blue-50)}
+.lvl.county{background:var(--ok-bg);color:var(--ok-fg);border-color:var(--ok-bd)}
+.lvl.park{background:#F5F3FF;color:#6D28D9;border-color:#DDD6FE}
+
+/* ---------- 芯片（示例 / 已选标签） ---------- */
+.chips{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;
+  border:1px solid var(--border);border-radius:var(--r-full);
+  font-size:13px;color:var(--muted);background:transparent;transition:.15s;
+}
+.chip:hover{border-color:var(--brand);color:var(--brand);background:var(--blue-50c)}
+.chip.plain{background:var(--card)}
+
+.tag{
+  display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 6px;
+  border-radius:var(--r-2);background:var(--blue-50b);color:var(--brand);font-size:12px;
+}
+.tag .x{
+  width:14px;height:14px;border-radius:var(--r-full);display:grid;place-items:center;
+  color:var(--brand);opacity:.65;font-size:12px;line-height:1;cursor:pointer;
+}
+.tag .x:hover{background:rgba(1,77,178,.14);opacity:1}
+.tag.more{background:#F2F4F7;color:var(--muted);padding:0 8px;cursor:pointer}
+.tag.more:hover{background:#E5E7EB}
+
+/* ---------- 通用卡片 / 面板 ---------- */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-6)}
+.card-pad{padding:20px}
+.sec-head{display:flex;align-items:center;gap:10px}
+.sec-head h3{font-size:15px;font-weight:600;color:var(--ink)}
+.sec-head .sub{font-size:12px;color:var(--muted)}
+.sec-head .spacer{flex:1}
+
+.hint{font-size:12px;color:var(--muted);line-height:1.6}
+.mono-sm{font-size:11px;color:var(--placeholder)}
+
+/* ---------- 提示条（banner） ---------- */
+.banner{
+  display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+  border-radius:var(--r-4);font-size:13px;line-height:1.6;
+}
+/* ★ 作者样式 display:flex 会盖掉 UA 的 [hidden]{display:none}：
+   断连横幅 #pipeConnLost 靠 hidden 控制显隐，不写这条就会「检索屏一出来就常亮黄条」。 */
+.banner[hidden]{display:none}
+.banner .bn-ic{flex:0 0 auto;width:20px;height:20px;border-radius:var(--r-full);display:grid;place-items:center;margin-top:1px}
+.banner .bn-main{flex:1;min-width:0}
+.banner .bn-ttl{font-weight:600;color:var(--ink);margin-bottom:2px}
+.banner .bn-desc{color:var(--muted);font-size:12px}
+.banner .bn-acts{flex:0 0 auto;display:flex;gap:8px;align-items:center}
+.banner.warn{background:var(--warn-bg);border:1px solid var(--warn-bd)}
+.banner.warn .bn-ic{background:#FDE68A;color:var(--warn-fg)}
+.banner.danger{background:var(--danger-bg);border:1px solid var(--danger-bd)}
+.banner.danger .bn-ic{background:#FECACA;color:var(--danger-fg)}
+.banner.ok{background:var(--ok-bg);border:1px solid var(--ok-bd)}
+.banner.ok .bn-ic{background:var(--ok-bd);color:var(--ok-fg)}
+.banner.info{background:var(--blue-50c);border:1px solid #BFDBFE}
+.banner.info .bn-ic{background:#BFDBFE;color:var(--brand-link)}
+
+/* ---------- 状态点 ---------- */
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12px;white-space:nowrap}
+.st::before{content:"";width:7px;height:7px;border-radius:var(--r-full);background:currentColor}
+.st.run{color:var(--brand)}
+.st.run::before{animation:pulse 1.4s ease-in-out infinite}
+.st.ok{color:var(--ok-fg)}
+.st.fail{color:var(--danger-fg)}
+.st.wait{color:var(--muted)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+
+/* ---------- 进度条 ---------- */
+.bar{height:6px;border-radius:var(--r-full);background:var(--bg-2);overflow:hidden}
+.bar > i{display:block;height:100%;border-radius:var(--r-full);
+  background:linear-gradient(90deg,#003D8F,#014DB3);transition:width .45s cubic-bezier(.4,0,.2,1)}
+
+/* ---------- 键值行 ---------- */
+.kv{display:flex;gap:8px;font-size:12px;line-height:1.5}
+.kv .k{flex:0 0 auto;color:var(--placeholder);min-width:56px}
+.kv .v{color:var(--text);min-width:0}
+.kv .v b{color:var(--ink);font-weight:600}
+.kv .v .arrow{color:var(--placeholder);margin:0 4px}
+
+/* ---------- 分隔 ---------- */
+.hr{height:1px;background:var(--line);border:0;margin:0}
+.hr-v{width:1px;background:var(--line)}

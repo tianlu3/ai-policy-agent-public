@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>AI 政策搜索智能体 · GUI 交互原型 · 多文件开发版</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="src/tokens.css?v=2026-10-25_1652">
+<link rel="stylesheet" href="src/shell.css?v=2026-10-25_1652">
+<link rel="stylesheet" href="src/app.css?v=2026-10-25_1652">
+<link rel="stylesheet" href="src/screens.css?v=2026-10-25_1652">
+</head>
+<body>
+<noscript>本原型需要启用 JavaScript 才能查看。</noscript>
+<script>window.__BUILD__ = "2026-10-25 16:52"; window.__BUILD_KIND__ = "dev";</script>
+<!-- build 2026-10-25 16:52 · 多文件开发版。本版不含内联数据：
+     · 前端文案 → src/data.js 运行时 fetch ./data/*.json（改完刷新即见）
+     · 后端数据 → src/data.js 运行时请求后端 GET /api/bootstrap（本地 FastAPI，
+       deliverables/backend）；后端不可用时自动降级注入 ./test_date.js
+     需通过本地 HTTP 服务打开（file:// 会被浏览器拦截 fetch）
+     本地后端已同源托管本页：在 deliverables/backend 下执行 python run.py，
+     浏览器访问 http://127.0.0.1:8000/ 即可
+     ★ 下面 src/* 的引用都带 ?v=2026-10-25 16:52 这个缓存键（每次重建换一个值）——
+       「源码改好了页面还是旧行为」多半就是被缓存的旧 src/*.js，重建即全量失效。
+       运行时的 window.__BUILD__ 也是这个值，页面左下角会常驻显示它。 -->
+<script src="src/icons.js?v=2026-10-25_1652"></script>
+<script src="src/data.js?v=2026-10-25_1652"></script>
+<script src="src/cascade.js?v=2026-10-25_1652"></script>
+<script src="src/screens-a.js?v=2026-10-25_1652"></script>
+<script src="src/screens-b.js?v=2026-10-25_1652"></script>
+<script src="src/screens-c.js?v=2026-10-25_1652"></script>
+<script src="src/screens-d.js?v=2026-10-25_1652"></script>
+<script src="src/app.js?v=2026-10-25_1652"></script>
+</body>
+</html>

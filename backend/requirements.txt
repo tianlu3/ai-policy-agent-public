@@ -1,0 +1,6 @@
+fastapi>=0.110,<1.0
+uvicorn[standard]>=0.29,<1.0
+# MySQL 驱动（纯 Python，免编译）：账号体系与检索记录持久化
+pymysql>=1.1,<2.0
+# 政策简报导出 PDF（中文用内置 CID 字体 STSong-Light，无需字体文件）
+reportlab>=4.1,<5

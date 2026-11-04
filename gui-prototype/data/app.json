@@ -1,0 +1,106 @@
+{
+  "_note": "应用外壳数据：品牌、产品顶栏、原型切换条、屏幕清单、通用提示文案。本文件只放前端自己的文案与配置；后端应返回的数据统一在 test_date.js。",
+  "brand": {
+    "name": "AI政策搜索智能体",
+    "pill": "本机运行 · 数据不出网"
+  },
+  "status": {
+    "text": "内置示例数据可用",
+    "title": "当前使用内置示例数据；检索失败时对应屏幕会给出明确的重试入口"
+  },
+  "nav": [
+    {
+      "key": "home",
+      "label": "首页检索",
+      "screen": "home"
+    },
+    {
+      "key": "list",
+      "label": "结果列表",
+      "screen": "list"
+    },
+    {
+      "key": "brief",
+      "label": "简报中心",
+      "screen": "brief"
+    },
+    {
+      "key": "history",
+      "label": "检索记录",
+      "screen": "history"
+    },
+    {
+      "key": "detail",
+      "label": "政策详情",
+      "screen": "detail"
+    }
+  ],
+  "shell": {
+    "noscript": "本原型需要启用 JavaScript 才能查看。",
+    "loadError": "数据加载失败：",
+    "loadStage": "【失败阶段】",
+    "loadStack": "【调用栈（前 8 行）】",
+    "loadStages": {
+      "load": "数据装载（data/*.json 或后端 /api/bootstrap）",
+      "auth": "登录会话恢复（/api/v1/auth/me）",
+      "render": "首屏渲染"
+    },
+    "loadHint": "怎么打开这个原型：\n① 单文件版 ai-policy-agent-prototype.html —— 数据已内联，双击即可打开，不需要任何服务（推荐先试这个）。\n② 多文件开发版 dev.html —— file:// 下浏览器会拦截 data/*.json 的读取，必须经 HTTP 访问。请在 gui-prototype 目录里执行：\n     python -m http.server 8000\n   然后打开 http://localhost:8000/dev.html\n③ 若已启动本地后端（deliverables/backend/start_server.bat），直接打开 http://127.0.0.1:8000/ 即可，前端与接口同源、无需另起服务。\n若①仍报错，请把上面的「失败阶段 + 调用栈」一起反馈，可据此定位到具体是哪个数据文件缺字段。"
+  },
+  "screens": [
+    {
+      "key": "home",
+      "label": "首页检索"
+    },
+    {
+      "key": "search",
+      "label": "检索中"
+    },
+    {
+      "key": "list",
+      "label": "结果列表"
+    },
+    {
+      "key": "detail",
+      "label": "政策详情"
+    },
+    {
+      "key": "brief",
+      "label": "简报导出"
+    },
+    {
+      "key": "login",
+      "label": "登录 / 注册"
+    },
+    {
+      "key": "history",
+      "label": "检索记录"
+    }
+  ],
+  "toast": {
+    "cancelSearch": "已取消本次检索，中断后支持断点续抓",
+    "regionCleared": "已清空地域条件，检索将覆盖全国（不限）",
+    "regionDraftDiscarded": "地域面板里的改动没点「确定」，已还原为已生效的条件",
+    "regionApplied": "地域条件已生效：{summary}",
+    "provinceAll": "已{verb}「{name}」下全部 {n} 个下级区划",
+    "provinceAllOn": "勾选",
+    "provinceAllOff": "取消",
+    "exportDone": "导出成功：{file} · 文件已下载到本机",
+    "filterApplied": "{label}已更新为 {value}",
+    "sortChanged": "排序已切换：{sort}（即时生效）",
+    "viewChanged": "已切换为「{view}」展示",
+    "openFolder": "已在「下载」文件夹中定位到该简报文件",
+    "openFolderMiss": "已打开「下载」文件夹 · 没找到同名文件，可按修改日期找最新一个",
+    "fitWidth": "已切换为适应宽度"
+  },
+  "filterLabels": {
+    "_note": "「条件精确筛选」四个维度（地域 / 行业 / 类型 / 截止时间）共用同一套筛选控件，故面板骨架文案统一在此，避免各维度各写一份、改一处漏一处。",
+    "panelHint": "勾选即改草稿，点「确定」才生效",
+    "clear": "清空",
+    "ok": "确定（{n}）",
+    "none": "不限",
+    "selectAll": "全选",
+    "unselectAll": "取消全选",
+    "empty": "没有匹配的选项"
+  }
+}

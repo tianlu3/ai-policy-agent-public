@@ -1,0 +1,102 @@
+/* ============================================================
+   设计令牌层 —— 取自 Ardot 设计稿（交互原型页）
+   使用处一律只写 var(--x)，不散落十六进制
+   ============================================================ */
+:root{
+  /* 品牌 */
+  --brand:#014DB2;
+  --brand-600:#0A5FC4;
+  --brand-deep:#001645;
+  --brand-link:#1D4ED8;
+
+  /* 文字 */
+  --ink:#0A1628;          /* 标题 */
+  --text:#303133;         /* 正文 */
+  --text-2:#18191C;       /* 次级正文 */
+  --muted:#6B7280;        /* 辅助 */
+  --placeholder:#9AA0A6;  /* 占位 */
+  --on-brand:#FFFFFF;
+
+  /* 线与面 */
+  --border:#E5E7EB;
+  --border-2:#C9CDD4;
+  --border-soft:#EBEEF2;
+  --bg:#F9F9F9;
+  --bg-2:#F2F4F7;
+  --bg-3:#F7F8FA;
+  --bg-4:#F5F8FD;
+  --card:#FFFFFF;
+  --line:#E7E7E7;
+
+  /* 浅蓝 */
+  --blue-50:#DEEAFB;
+  --blue-50b:#EAF1FB;
+  --blue-50c:#ECF5FF;
+  --blue-100:#E9F0FB;
+
+  /* 语义：待核验 */
+  --warn-bg:#FEF3C7;
+  --warn-fg:#B4520A;
+  --warn-bd:#FDE68A;
+  --warn-dot:#D97706;
+
+  /* 语义：成功 */
+  --ok:#10B981;
+  --ok-fg:#047857;
+  --ok-bg:#ECFDF5;
+  --ok-bd:#A7F3D0;
+
+  /* 语义：错误 */
+  --danger:#DC2626;
+  --danger-fg:#B91C1C;
+  --danger-bg:#FEF2F2;
+  --danger-bd:#FECACA;
+
+  /* 语义：橙（截止提醒） */
+  --orange:#EA580C;
+  --orange-bg:#FFF7EE;
+
+  /* 圆角 */
+  --r-1:4px; --r-2:6px; --r-3:8px; --r-4:10px; --r-5:12px; --r-6:14px; --r-full:999px;
+
+  /* 阴影 */
+  --sh-1:0 1px 2px rgba(10,22,40,.05);
+  --sh-2:0 4px 14px rgba(10,22,40,.06);
+  --sh-3:0 10px 28px -6px rgba(1,77,178,.14);
+  --sh-4:0 18px 48px -12px rgba(10,22,40,.18);
+
+  /* 字体 */
+  --font-cn:"Noto Sans SC","PingFang SC","Microsoft YaHei","Source Han Sans SC",sans-serif;
+  --font-en:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+  /* 原型外壳（工具层，非设计还原物） */
+  --shell-bg:#20242C;
+  --shell-fg:#C7CCD6;
+  --shell-active:#014DB2;
+}
+
+/* ---------- 基础重置 ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--font-cn);
+  color:var(--text);
+  background:var(--shell-bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+button{font-family:inherit;font-size:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input,textarea{font-family:inherit;font-size:inherit;color:inherit}
+ul,ol{margin:0;padding:0;list-style:none}
+h1,h2,h3,h4,p{margin:0}
+a{color:var(--brand-link);text-decoration:none}
+table{border-collapse:collapse;border-spacing:0}
+.num{font-family:var(--font-en);font-variant-numeric:tabular-nums}
+
+/* 滚动条（屏内滚动区） */
+.scroll{overflow:auto;scrollbar-width:thin;scrollbar-color:#CBD2DB transparent}
+.scroll::-webkit-scrollbar{width:8px;height:8px}
+.scroll::-webkit-scrollbar-thumb{background:#CBD2DB;border-radius:var(--r-full)}
+.scroll::-webkit-scrollbar-thumb:hover{background:#AEB7C2}
+.scroll::-webkit-scrollbar-track{background:transparent}

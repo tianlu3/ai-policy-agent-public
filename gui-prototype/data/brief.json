@@ -1,0 +1,74 @@
+{
+  "_note": "第 5 屏「简报预览与导出」：导出设置、预览开关、成功横幅、一页纸简报正文模板。预览与导出的清单是**同一份** —— 取「结果列表里已勾选的政策」，导出范围切到「当前筛选结果」就取整份结果集；**一条都没有就给空态（preview.emptyXxx），绝不用演示政策占位**。生成时间（test_date.js → brief.generatedAt）在运行期注入。导出后的真实文件名 / 下载地址 / AI 综述来自后端 POST /api/v1/briefs 的返回（BRIEF_STATE.result）。fileNameBase 只是「刚进这一屏、还没导出」时的文件名兜底。",
+  "settings": {
+    "title": "导出设置",
+    "template": {
+      "label": "简报模板",
+      "options": [
+        { "v": "onepage", "label": "一页纸简报（适合转发 / 上会）" },
+        { "v": "detail", "label": "详版简报（含全部字段与来源）" }
+      ]
+    },
+    "scope": {
+      "label": "导出范围",
+      "options": [
+        { "v": "picked", "label": "已勾选 {picked} 条政策" },
+        { "v": "filtered", "label": "当前筛选结果（{total} 条）" }
+      ]
+    },
+    "format": {
+      "label": "导出格式",
+      "options": [
+        { "v": "xlsx", "label": "XLSX" },
+        { "v": "pdf", "label": "PDF" },
+        { "v": "doc", "label": "Doc" }
+      ]
+    },
+    "submit": "生成并导出简报",
+    "generating": "正在生成简报…",
+    "hint": "生成的是真实文件（XLSX / PDF / Doc）· 综述走大模型，最多等待 60 秒 · 文件名含日期与范围"
+  },
+  "preview": {
+    "title": "预览 · {x}",
+    "onepage": "一页纸简报",
+    "detail": "详版简报",
+    "fit": "适应宽度",
+    "emptyTitle": "暂未选择政策",
+    "emptyDesc": "简报只收录你在「结果列表」里勾选的政策。先去勾选几条（或把导出范围切到「当前筛选结果」），这里就会排出对应的预览。",
+    "emptyGo": "去结果列表勾选",
+    "emptyFilteredTitle": "暂无可导出的政策",
+    "emptyFilteredDesc": "本次检索还没有结果可以成文。回首页调整条件重新检索一次，结果落地后这里会自动排版。",
+    "emptyFilteredGo": "回首页重新检索"
+  },
+  "scopeNames": { "picked": "已勾选政策", "filtered": "当前筛选结果" },
+  "success": {
+    "title": "导出成功：{file}",
+    "desc": "真实文件已下载到本机 · 中文无乱码 · 文件名含日期与范围，可辨识",
+    "open": "打开所在文件夹",
+    "download": "重新下载"
+  },
+  "errors": {
+    "empty": "请先在结果列表勾选要导出的政策",
+    "missing": "该简报文件已不存在（可能已被清理），请重新生成",
+    "offline": "未连接本地后端，无法生成简报文件；请先按 deliverables/backend 的说明启动后端",
+    "failed": "简报生成失败：{msg}",
+    "downloadFailed": "文件下载失败：{msg}"
+  },
+  "paper": {
+    "headTpl": "<h2>{title}</h2>\n  <div class=\"pmeta\">{meta}</div>",
+    "title": "企业扶持政策简报（一页纸）",
+    "metaTpl": "生成时间 {time} · 数据来源 {sources} 个政策源 · 共 {n} 条政策 · 建议核验后使用",
+    "summaryHead": "AI 综述 · {src}",
+    "srcLlm": "大模型生成",
+    "srcRule": "规则引擎兜底",
+    "previewCut": "…以上为预览前 {shown} 条，导出的文件包含全部 {n} 条",
+    "itemTpl": "<div class=\"pitem\">\n      <div class=\"pn\">{name} — {level}</div>\n      <div class=\"pl\">能申吗：{conditions}</div>\n      <div class=\"pl\">截止 <b>{deadline}</b><span class=\"sep\">·</span>补贴：{subsidy}</div>\n      <div class=\"pl\">材料：{materials}<span class=\"sep\">·</span>来源：{source}</div>\n    </div>",
+    "joinSep": " / ",
+    "dedupWrap": "（{dedup}）",
+    "materialStrip": "（加盖公章）",
+    "footTpl": "<div class=\"pfoot\">免责声明：本简报由 AI 自动聚合公开政策生成，仅供内部参考，不构成申报建议。<br>本工具仅聚合与结构化公开政策原文，请以官方发布文本为准。</div>"
+  },
+  "fileNameBase": "政策简报",
+  "ext": { "xlsx": "xlsx", "pdf": "pdf", "doc": "docx" },
+  "previewMax": 20
+}

@@ -1,0 +1,83 @@
+{
+  "_note": "第 11 屏「检索记录」：登录用户的历史检索列表与结果回放。数据来自后端 MySQL search_records 表（GET /api/v1/history）。此处只放文案与展示配置。",
+  "head": {
+    "title": "我的检索记录",
+    "meta": "共 {n} 条",
+    "metaFiltered": "筛选「{kw}」命中 {n} 条"
+  },
+  "tabs": {
+    "search": "检索记录",
+    "chat": "对话记录",
+    "hint": "问过的政策都在这里，点一下接着聊"
+  },
+  "chat": {
+    "meta": "问过 {n} 条政策",
+    "qa": "{q} 次提问 · {m} 条对话",
+    "lastQ": "最近提问",
+    "empty": "最后提问 {t}",
+    "open": "继续对话",
+    "emptyTitle": "还没有问过政策",
+    "emptyDesc": "打开任意一条政策的详情页，右栏「问政策」可以直接提问；登录后每一条问答都会存进数据库，这里按政策列出来。",
+    "emptyAction": "去结果列表挑一条政策",
+    "loadFailed": "对话记录读取失败"
+  },
+  "tools": {
+    "refresh": "刷新",
+    "refreshing": "刷新中…",
+    "clear": "清空记录",
+    "searchPlaceholder": "在记录里搜索关键词，如「智能硬件」「补贴」"
+  },
+  "filter": {
+    "userLabel": "当前账号",
+    "profileLabel": "企业档案",
+    "profileFrom": "来自注册信息，可在「登录 / 注册」页修改",
+    "savedLabel": "已入库记录",
+    "savedNote": "检索条件与结果均已落库，可跨设备回放"
+  },
+  "card": {
+    "replay": "回放结果",
+    "replaying": "正在回放…",
+    "restore": "以此条件再检索",
+    "delete": "删除"
+  },
+  "badges": {
+    "succeeded": "已完成",
+    "failed": "失败",
+    "canceled": "已取消",
+    "degraded": "降级兜底",
+    "remote": "真实模型",
+    "local": "本地规则引擎"
+  },
+  "empty": {
+    "title": "还没有检索记录",
+    "desc": "登录状态下发起一次检索，条件与结果会自动存入数据库；下次打开应用就能直接回放。",
+    "action": "去发起第一次检索"
+  },
+  "noMatch": {
+    "title": "没有匹配的记录",
+    "desc": "换个关键词试试，或清空筛选条件查看全部记录。",
+    "action": "清空筛选"
+  },
+  "guest": {
+    "title": "登录后即可查看检索记录",
+    "desc": "检索记录与登录账号绑定并存储在 MySQL 中。登录后，历次检索的条件与结果会按时间倒序列出，点一下就能回放。",
+    "login": "去登录 / 注册",
+    "later": "返回首页"
+  },
+  "loading": {
+    "title": "正在读取检索记录…",
+    "desc": "从 MySQL 拉取该账号的历史检索清单"
+  },
+  "error": {
+    "title": "读取检索记录失败",
+    "action": "重试"
+  },
+  "foot": "记录仅对本人可见（按 user_id 隔离）；删除后不可恢复。单账号最多保留 {keep} 条，超出自动淘汰最旧记录。",
+  "toast": {
+    "replayed": "已回放历史结果（{summary}）",
+    "restored": "已恢复该记录的条件，可直接开始检索",
+    "deleted": "已删除 1 条检索记录",
+    "cleared": "已清空 {n} 条检索记录",
+    "refreshed": "检索记录已刷新"
+  }
+}

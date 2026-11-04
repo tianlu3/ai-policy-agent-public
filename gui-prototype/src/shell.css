@@ -1,0 +1,72 @@
+/* ============================================================
+   原型外壳 —— 画布缩放 / 通知与 Toast / 空态
+   （属于工具层，不属于设计还原物）
+   ------------------------------------------------------------
+   外壳不占任何画面：屏索引条与左下角画布缩放胶囊都已移除，
+   各屏入口统一收进产品自己的顶栏导航（data/app.json → nav）；
+   画布恒定按窗口等比铺满（原「适应窗口」，不再提供「实际尺寸」切换）。
+   构建戳仍在 window.__BUILD__（build.py 写入），需要时开控制台读。
+   ============================================================ */
+body{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+
+/* ---------- 画布视口 ----------
+   视口底色直接取页面自己的 --bg，画布去掉圆角与投影、也不留内边距 ——
+   于是应用就是整页本身，四周看不到任何框。
+   （等比缩放仍在：窗口比 16:10 更宽时左右留白，更窄时上下留白，
+     而留白与页面同色，所以视觉上仍是「一整个页面」。） */
+.proto-viewport{
+  flex:1;min-height:0;overflow:auto;display:flex;justify-content:center;align-items:flex-start;
+  background:var(--bg);
+}
+.proto-viewport.center{align-items:center}
+.proto-stage{position:relative;flex:0 0 auto}
+.proto-canvas{
+  position:absolute;top:0;left:0;width:1440px;height:900px;overflow:hidden;
+  background:var(--bg);
+  transform-origin:top left;
+}
+
+/* ---------- 屏幕容器 ---------- */
+.screen{
+  position:relative;
+  width:1440px;height:900px;display:flex;flex-direction:column;
+  background:var(--bg);color:var(--text);overflow:hidden;
+}
+.screen-body{flex:1;min-height:0;display:flex;flex-direction:column}
+
+/* ---------- Toast ---------- */
+.toast-layer{position:fixed;right:24px;bottom:24px;z-index:200;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.toast{
+  display:flex;align-items:flex-start;gap:10px;max-width:420px;
+  padding:12px 16px;border-radius:var(--r-4);background:var(--card);
+  border:1px solid var(--border);box-shadow:var(--sh-4);
+  font-size:13px;line-height:1.5;color:var(--text-2);
+  animation:toast-in .24s cubic-bezier(.2,.8,.3,1);
+}
+.toast.out{animation:toast-out .22s ease forwards}
+.toast .ic{flex:0 0 auto;width:18px;height:18px;border-radius:var(--r-full);display:grid;place-items:center;margin-top:1px}
+.toast.ok .ic{background:var(--ok-bg);color:var(--ok-fg);border:1px solid var(--ok-bd)}
+.toast.warn .ic{background:var(--warn-bg);color:var(--warn-fg);border:1px solid var(--warn-bd)}
+.toast.danger .ic{background:var(--danger-bg);color:var(--danger-fg);border:1px solid var(--danger-bd)}
+.toast.info .ic{background:var(--blue-50b);color:var(--brand);border:1px solid var(--blue-50)}
+.toast b{color:var(--ink);font-weight:600}
+/* 通知卡片：右下角同一条队列里，比 toast 更实（标题 + 说明 + 操作） */
+.toast.notice{align-items:center;gap:12px;max-width:520px;padding:14px 16px}
+.toast.notice .ic{margin-top:0;width:22px;height:22px}
+.toast.notice .nt-main{flex:1;min-width:0}
+.toast.notice .nt-ttl{font-size:13px;font-weight:600;color:var(--ink)}
+.toast.notice .nt-desc{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.55;word-break:break-word}
+.toast.notice .nt-acts{display:flex;gap:6px;flex:0 0 auto;align-items:center}
+@keyframes toast-in{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes toast-out{to{opacity:0;transform:translateY(6px)}}
+
+/* ---------- 空态 ---------- */
+.empty{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  padding:44px 24px;border:1px dashed var(--border-2);border-radius:var(--r-5);
+  background:var(--card);text-align:center;
+}
+.empty .em-ic{width:44px;height:44px;border-radius:var(--r-full);background:var(--blue-50b);display:grid;place-items:center;color:var(--brand)}
+.empty h4{font-size:14px;font-weight:600;color:var(--ink)}
+.empty p{font-size:12px;color:var(--muted);max-width:520px;line-height:1.6}
+.empty .em-acts{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;justify-content:center}
